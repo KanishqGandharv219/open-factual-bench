@@ -2,19 +2,19 @@
 
 ## Vision
 
-Large language model benchmarks are under increasing criticism for weak methodology, data contamination, and leaderboard scores that are easy to game.[web:244][web:247]  
-At the same time, new work such as DeepMind's FACTS Benchmark Suite and FACTS Grounding highlights the need for systematic, transparent evaluation of model factuality on real-world questions.[web:179][web:183][web:242]  
-This project aims to build a small but rigorous, open benchmark that measures the factuality and hallucination behaviour of **open LLMs** (e.g. Gemma, Llama, Mistral, Phi), with a focus on reproducibility and realistic hardware constraints.[web:226][web:232]
+Large language model benchmarks are under increasing criticism for weak methodology, data contamination, and leaderboard scores that are easy to game.  
+At the same time, new work such as DeepMind's FACTS Benchmark Suite and FACTS Grounding highlights the need for systematic, transparent evaluation of model factuality on real-world questions.  
+This project aims to build a small but rigorous, open benchmark that measures the factuality and hallucination behaviour of **open LLMs** (e.g. Gemma, Llama, Mistral, Phi), with a focus on reproducibility and realistic hardware constraints.
 
 ## Scope
 
 The benchmark is designed to be:
 
-- **Model-agnostic**: works with any Hugging Face-style text generation model, including Gemma, Llama, Mistral, Phi and others.[web:232]  
+- **Model-agnostic**: works with any Hugging Face-style text generation model, including Gemma, Llama, Mistral, Phi and others.
 - **Factuality-focused**: tests whether answers are correct, grounded, and free of hallucinated details.  
-- **Contamination-aware**: prioritises post-2024 topics and adversarial rewrites to reduce training-data leakage.[web:241][web:244]  
+- **Contamination-aware**: prioritises post-2024 topics and adversarial rewrites to reduce training-data leakage.
 - **Hardware-aware**: targets common setups like Colab T4 and Kaggle GPUs, with configs that make trade-offs explicit.  
-- **Reproducible**: every run is tied to a config, model version, and hardware description so results can be replicated.[web:179][web:183][web:226]
+- **Reproducible**: every run is tied to a config, model version, and hardware description so results can be replicated.
 
 Planned evaluation modes:
 
