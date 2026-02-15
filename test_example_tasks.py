@@ -2,9 +2,10 @@ from bench.tasks_example import EXAMPLE_TASKS
 from bench.schema import BenchmarkConfig
 
 def main():
-    print("Loaded tasks:")
+    print(f"Loaded {len(EXAMPLE_TASKS)} tasks:")
     for t in EXAMPLE_TASKS:
-        print(f"- {t.id} | {t.domain} | {t.question} -> {t.reference_answer}")
+        task_type = t.metadata.get("type", "unknown") if t.metadata else "unknown"
+        print(f"- {t.id} | {t.domain} | {task_type} | {t.question[:50]}...")
 
     cfg = BenchmarkConfig(
         model_id="google/gemma-2-2b-it",
