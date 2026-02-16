@@ -50,7 +50,7 @@ Feedback on the benchmark design and use cases is very welcome.
 
 ## Design notes (contamination-aware)
 
-Recent work such as LiveBench and MMLU-CF shows how easily static benchmarks become contaminated as soon as their questions leak into public training corpora.[web:261][web:262][web:263][web:264]  
+Recent work such as LiveBench and MMLU-CF shows how easily static benchmarks become contaminated as soon as their questions leak into public training corpora. 
 To avoid this, open-factual-bench is designed with:
 
 - A preference for **post-2024 or recently-updated questions**, inspired by dynamic benchmarks like LiveBench.
