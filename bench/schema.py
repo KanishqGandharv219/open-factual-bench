@@ -11,7 +11,12 @@ class Task:
     question: str
     reference_answer: str
     context: Optional[str] = None
+    # more explicit provenance fields
+    source: Optional[str] = None          # e.g. "synthetic_demo_v1", "news_2025_06"
+    created_at: Optional[str] = None      # e.g. "2025-06"
+    notes: Optional[str] = None
     metadata: Optional[Dict[str, Any]] = None
+
 
 @dataclass
 class BenchmarkConfig:
