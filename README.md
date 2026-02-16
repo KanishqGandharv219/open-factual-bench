@@ -47,3 +47,13 @@ This repository is in the early design phase:
 - [ ] Publish example configs and Colab/Kaggle notebooks
 
 Feedback on the benchmark design and use cases is very welcome.
+
+## Design notes (contamination-aware)
+
+Recent work such as LiveBench and MMLU-CF shows how easily static benchmarks become contaminated as soon as their questions leak into public training corpora.[web:261][web:262][web:263][web:264]  
+To avoid this, open-factual-bench is designed with:
+
+- A preference for **post-2024 or recently-updated questions**, inspired by dynamic benchmarks like LiveBench.
+- **Clear metadata** on each task (e.g. approximate source and creation time) to make future contamination checks easier.  
+- An emphasis on **objective, auto-gradable factual questions** where possible, following the spirit of FACTS and LiveBench.  
+- A path to **community-reported results** via simple JSON/YAML files, aligned with how Hugging Face “Community Evals” handle open benchmarking.
