@@ -31,7 +31,7 @@
     {
       "task_id": "math_001",
       "model_response": "2x\n\n**Explanation:**\n\nThe derivative of a function represents its instantaneous rate of change.  For the function x\u00b2, the derivative is 2x. Here's why:\n\n* **Power Rule:** The power rule of differentiation states that the derivative of x^n is nx^(n-1).",
-      "is_correct": false,
+      "is_correct": true,
       "latency_ms": 3555.52,
       "tokens_generated": 64,
       "timestamp": "2026-02-17T06:03:50",
@@ -49,7 +49,7 @@
     {
       "task_id": "code_001",
       "model_response": "`def`\n\n**Explanation:**\n\nThe `def` keyword in Python is used to define a function. It signals to the interpreter that you're about to create a new block of code that will perform a specific task. \n\nHere's a simple example:\n\n```python\ndef greet(name):",
-      "is_correct": false,
+      "is_correct": true,
       "latency_ms": 3191.98,
       "tokens_generated": 64,
       "timestamp": "2026-02-17T06:03:56",
