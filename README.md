@@ -57,3 +57,7 @@ To avoid this, open-factual-bench is designed with:
 - **Clear metadata** on each task (e.g. approximate source and creation time) to make future contamination checks easier.  
 - An emphasis on **objective, auto-gradable factual questions** where possible, following the spirit of FACTS and LiveBench.  
 - A path to **community-reported results** via simple JSON/YAML files, aligned with how Hugging Face “Community Evals” handle open benchmarking.
+
+## Example results
+
+The `results/run_20260217_060342_gemma-2b-colab-t4.json` file contains an example run of this benchmark on `google/gemma-2-2b-it` on a Colab T4 GPU, including per-task outputs, correctness flags (for tasks where exact match is defined), and latency per query.

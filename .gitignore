@@ -1,1 +1,2 @@
 results/*.json
+!results/run_20260217_060342_gemma-2b-colab-t4.json
