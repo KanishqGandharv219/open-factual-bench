@@ -1,6 +1,7 @@
-# Chat logs (reference only, not part of the benchmark)
+# Chat logs and prompts (reference only, not part of the benchmark)
 chat1.md
 chat2.md
+Prompt.txt
 
 # Colab notebooks (raw artifacts)
 Hallucination.ipynb
