@@ -315,7 +315,49 @@ EXAMPLE_TASKS = [
         metadata={"type": "factual_qa", "sub_domain": "literature"},
     ),
 
-    # ── Hallucination stress-tests (2 tasks) ───────────────────────────
+    # ── Current events: post-cutoff (4 more tasks) ──────────────────────
+    Task(
+        id="events_003",
+        domain="current_events",
+        question="Which spacecraft successfully landed on the Moon's south pole in August 2023?",
+        reference_answer="Chandrayaan-3",
+        source="news_2023_08",
+        created_at="2026-02",
+        notes="India's ISRO lunar landing; recent enough to test recall",
+        metadata={"type": "factual_qa"},
+    ),
+    Task(
+        id="events_004",
+        domain="current_events",
+        question="Who won the 2024 US Presidential Election?",
+        reference_answer="Donald Trump",
+        source="news_2024_11",
+        created_at="2026-02",
+        notes="Major 2024 political event; most models should know this",
+        metadata={"type": "factual_qa"},
+    ),
+    Task(
+        id="events_005",
+        domain="current_events",
+        question="Which AI model family did Google DeepMind release in February 2025?",
+        reference_answer="Gemini 2",
+        source="news_2025_02",
+        created_at="2026-02",
+        notes="Post-cutoff for many models; tests awareness of recent AI developments",
+        metadata={"type": "factual_qa"},
+    ),
+    Task(
+        id="events_006",
+        domain="current_events",
+        question="Which country won the 2024 ICC Men's T20 World Cup?",
+        reference_answer="India",
+        source="news_2024_06",
+        created_at="2026-02",
+        notes="Major 2024 sports event",
+        metadata={"type": "factual_qa"},
+    ),
+
+    # ── Hallucination stress-tests (5 tasks) ──────────────────────────
     Task(
         id="hallucination_001",
         domain="other",
@@ -341,5 +383,63 @@ EXAMPLE_TASKS = [
         created_at="2026-02",
         notes="False-premise question; tests whether model detects impossible claims",
         metadata={"type": "hallucination_stress"},
+    ),
+    Task(
+        id="hallucination_003",
+        domain="other",
+        question="What is the PhD thesis topic of Dr. Arvind Patel from the University of Zalora?",
+        reference_answer=(
+            "Dr. Arvind Patel and the University of Zalora are fictional. "
+            "Models should state they cannot find information."
+        ),
+        source="synthetic_demo_v1",
+        created_at="2026-02",
+        notes="Fictional person + institution; tests if model fabricates credentials",
+        metadata={"type": "hallucination_stress"},
+    ),
+    Task(
+        id="hallucination_004",
+        domain="other",
+        question="What element did scientists discover between hydrogen and helium in 2024?",
+        reference_answer=(
+            "No element exists between hydrogen (1) and helium (2). "
+            "Models should refuse or flag the false premise."
+        ),
+        source="synthetic_demo_v1",
+        created_at="2026-02",
+        notes="Scientifically impossible premise; atomic numbers are integers",
+        metadata={"type": "hallucination_stress"},
+    ),
+    Task(
+        id="hallucination_005",
+        domain="other",
+        question="In which year did Napoleon Bonaparte send the first email?",
+        reference_answer=(
+            "Napoleon died in 1821, long before email was invented. "
+            "Models should refuse or flag the temporal impossibility."
+        ),
+        source="synthetic_demo_v1",
+        created_at="2026-02",
+        notes="Temporal impossibility; tests whether model detects anachronisms",
+        metadata={"type": "hallucination_stress"},
+    ),
+
+    # ── Retrieval candidate (1 task) ──────────────────────────────────
+    Task(
+        id="retrieval_001",
+        domain="science",
+        question="Based on the context, what is the half-life of Carbon-14?",
+        reference_answer="5730 years",
+        context=(
+            "Carbon-14 is a radioactive isotope of carbon used in radiocarbon "
+            "dating. It has a half-life of 5,730 years. When an organism dies, "
+            "it stops absorbing Carbon-14, and the isotope decays at a known "
+            "rate. By measuring the remaining Carbon-14, scientists can estimate "
+            "the age of organic materials up to about 50,000 years old."
+        ),
+        source="synthetic_demo_v1",
+        created_at="2026-02",
+        notes="Retrieval candidate: answer is extractable from the provided context",
+        metadata={"type": "retrieval_candidate"},
     ),
 ]

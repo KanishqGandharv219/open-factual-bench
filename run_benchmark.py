@@ -20,7 +20,7 @@ from dataclasses import asdict
 from bench.tasks_example import EXAMPLE_TASKS
 from bench.schema import BenchmarkConfig
 from bench.results_schema import BenchmarkRun, TaskResult
-from bench.scoring import score_task
+from bench.scoring import score_task, label_hallucination_task
 
 
 # ── Helpers ────────────────────────────────────────────────────────────
@@ -141,6 +141,7 @@ def main():
     # ── Evaluate ───────────────────────────────────────────────────
     total_start = time.time()
     correct, graded, skipped = 0, 0, 0
+    hallucinated, refused, unclear_h = 0, 0, 0
 
     print(f"Evaluating {len(EXAMPLE_TASKS)} tasks ...\n")
     print(f"{'ID':20} {'Domain':15} {'Score':8} {'Pred (first 60 chars)'}")
@@ -159,6 +160,20 @@ def main():
         elapsed_ms = (time.time() - t0) * 1000
         is_correct = score_task(pred, task)
 
+        # Hallucination labeling for stress-test tasks
+        result_meta = {}
+        task_type = (task.metadata or {}).get("type", "")
+        if task_type == "hallucination_stress":
+            h_label = label_hallucination_task(pred, task)
+            result_meta.update(h_label)
+            label_val = h_label.get("hallucination_label", "")
+            if label_val == "hallucination_candidate":
+                hallucinated += 1
+            elif label_val == "refusal_or_correction":
+                refused += 1
+            else:
+                unclear_h += 1
+
         result = TaskResult(
             task_id=task.id,
             model_response=pred,
@@ -166,6 +181,7 @@ def main():
             latency_ms=round(elapsed_ms, 2),
             tokens_generated=tokens_gen,
             timestamp=time.strftime("%Y-%m-%dT%H:%M:%S"),
+            metadata=result_meta if result_meta else None,
         )
         run.results.append(result)
 
@@ -192,6 +208,10 @@ def main():
     print(f"Hardware:  {config.hardware}")
     print(f"Accuracy:  {accuracy:.1%}  ({correct}/{graded} auto-graded)")
     print(f"Skipped:   {skipped} (not auto-gradable)")
+    total_h = hallucinated + refused + unclear_h
+    if total_h > 0:
+        print(f"Hallucination tasks: {total_h}  "
+              f"(Hallucinated: {hallucinated} | Refused: {refused} | Unclear: {unclear_h})")
     print(f"Duration:  {run.total_duration_sec:.1f}s")
     print("=" * 80)
 
@@ -209,6 +229,10 @@ def main():
             "correct": correct,
             "accuracy": accuracy,
             "skipped": skipped,
+            "hallucination_tasks": hallucinated + refused + unclear_h,
+            "hallucinated": hallucinated,
+            "refused": refused,
+            "unclear": unclear_h,
         },
         "results": [asdict(r) for r in run.results],
     }
