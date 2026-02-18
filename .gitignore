@@ -1,2 +1,15 @@
+# Chat logs (reference only, not part of the benchmark)
+chat1.md
+chat2.md
+
+# Colab notebooks (raw artifacts)
+Hallucination.ipynb
+
+# Results (keep only committed example runs)
 results/*.json
 !results/run_20260217_060342_gemma-2b-colab-t4.json
+
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/

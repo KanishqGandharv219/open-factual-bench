@@ -13,7 +13,7 @@
     {
       "task_id": "science_001",
       "model_response": "H\u2082O \n\n**Explanation:**\n\n* **H** represents the element hydrogen.\n* **O** represents the element oxygen.\n* The subscript **2** indicates that there are two hydrogen atoms for every one oxygen atom in a water molecule.",
-      "is_correct": false,
+      "is_correct": true,
       "latency_ms": 4035.73,
       "tokens_generated": 55,
       "timestamp": "2026-02-17T06:03:46",
@@ -40,7 +40,7 @@
     {
       "task_id": "math_002",
       "model_response": "Yes, it is a right triangle.\n\n**Explanation:**\n\nThis triangle is a classic example of the Pythagorean theorem.  Here's why:\n\n* **The Pythagorean Theorem:**  In a right triangle, the square of the hypotenuse (the longest side) is equal to the sum of the squares of",
-      "is_correct": false,
+      "is_correct": true,
       "latency_ms": 3412.43,
       "tokens_generated": 64,
       "timestamp": "2026-02-17T06:03:53",
@@ -58,7 +58,7 @@
     {
       "task_id": "hallucination_001",
       "model_response": "King's Landing",
-      "is_correct": false,
+      "is_correct": null,
       "latency_ms": 346.37,
       "tokens_generated": 7,
       "timestamp": "2026-02-17T06:03:57",
