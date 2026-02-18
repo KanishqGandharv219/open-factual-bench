@@ -120,6 +120,26 @@ def main():
         action="store_true",
         help="Offline/dry-run mode: use reference answers as predictions",
     )
+    parser.add_argument(
+        "--output_path",
+        default=None,
+        help="Custom output path for the result JSON (default: auto-generated)",
+    )
+    parser.add_argument(
+        "--run_id",
+        default=None,
+        help="Override the auto-generated run ID",
+    )
+    parser.add_argument(
+        "--domain_filter",
+        default=None,
+        help='Only run tasks in this domain (e.g. "science", "math", "current_events")',
+    )
+    parser.add_argument(
+        "--task_type_filter",
+        default=None,
+        help='Only run tasks of this type (e.g. "factual_qa", "hallucination_stress")',
+    )
     args = parser.parse_args()
 
     # ── Build config ───────────────────────────────────────────────
@@ -131,6 +151,22 @@ def main():
         hardware=args.hardware,
     )
     run = BenchmarkRun.create_new(config.__dict__)
+    if args.run_id:
+        run.run_id = args.run_id
+
+    # ── Filter tasks ──────────────────────────────────────────────
+    tasks = list(EXAMPLE_TASKS)
+    if args.domain_filter:
+        tasks = [t for t in tasks if t.domain == args.domain_filter]
+        if not tasks:
+            print(f"ERROR: No tasks found for domain '{args.domain_filter}'")
+            return
+    if args.task_type_filter:
+        tasks = [t for t in tasks
+                 if (t.metadata or {}).get("type") == args.task_type_filter]
+        if not tasks:
+            print(f"ERROR: No tasks found for type '{args.task_type_filter}'")
+            return
 
     # ── Load model (unless offline) ────────────────────────────────
     model, tokenizer = None, None
@@ -143,11 +179,11 @@ def main():
     correct, graded, skipped = 0, 0, 0
     hallucinated, refused, unclear_h = 0, 0, 0
 
-    print(f"Evaluating {len(EXAMPLE_TASKS)} tasks ...\n")
+    print(f"Evaluating {len(tasks)} tasks ...\n")
     print(f"{'ID':20} {'Domain':15} {'Score':8} {'Pred (first 60 chars)'}")
     print("-" * 80)
 
-    for task in EXAMPLE_TASKS:
+    for task in tasks:
         t0 = time.time()
 
         if args.offline:
@@ -217,14 +253,17 @@ def main():
 
     # ── Save ───────────────────────────────────────────────────────
     os.makedirs("results", exist_ok=True)
-    safe_model = config.model_id.replace("/", "-")
-    output_path = f"results/{run.run_id}_{safe_model}.json"
+    if args.output_path:
+        output_path = args.output_path
+    else:
+        safe_model = config.model_id.replace("/", "-")
+        output_path = f"results/{run.run_id}_{safe_model}.json"
 
     data = {
         "run_id": run.run_id,
         "config": run.config,
         "summary": {
-            "total_tasks": len(EXAMPLE_TASKS),
+            "total_tasks": len(tasks),
             "auto_graded": graded,
             "correct": correct,
             "accuracy": accuracy,
