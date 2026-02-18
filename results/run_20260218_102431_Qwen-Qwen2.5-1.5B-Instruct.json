@@ -1,0 +1,395 @@
+{
+  "run_id": "run_20260218_102431",
+  "config": {
+    "model_id": "Qwen/Qwen2.5-1.5B-Instruct",
+    "eval_type": "factual_qa",
+    "max_new_tokens": 64,
+    "temperature": 0.0,
+    "hardware": "Colab T4 16GB",
+    "seed": 0,
+    "extra": null
+  },
+  "summary": {
+    "total_tasks": 40,
+    "auto_graded": 35,
+    "correct": 26,
+    "accuracy": 0.7428571428571429,
+    "skipped": 5,
+    "hallucination_tasks": 5,
+    "hallucinated": 3,
+    "refused": 1,
+    "unclear": 1
+  },
+  "results": [
+    {
+      "task_id": "science_001",
+      "model_response": "H2O\n\nThe chemical symbol for water is H2O, which stands for hydrogen and oxygen. Water molecules consist of two hydrogen atoms bonded to one oxygen atom, forming a bent shape with an angle of about 104.5 degrees between the bonds. This molecular structure gives water its unique properties such as",
+      "is_correct": true,
+      "latency_ms": 4205.82,
+      "tokens_generated": 64,
+      "timestamp": "2026-02-18T10:25:21",
+      "metadata": null
+    },
+    {
+      "task_id": "science_002",
+      "model_response": "The James Webb Space Telescope was launched on December 25, 2021.\nThe answer is 2021.",
+      "is_correct": true,
+      "latency_ms": 1477.5,
+      "tokens_generated": 28,
+      "timestamp": "2026-02-18T10:25:22",
+      "metadata": null
+    },
+    {
+      "task_id": "science_003",
+      "model_response": "Au\n\nThe chemical symbol for gold is Au. This abbreviation stands for \"Aurum,\" which is Latin for \"gold.\" It's used to represent the element on periodic tables and other scientific documents. The atomic number of gold is 79, making it the thirteenth most abundant metal in Earth's crust",
+      "is_correct": true,
+      "latency_ms": 2385.84,
+      "tokens_generated": 64,
+      "timestamp": "2026-02-18T10:25:25",
+      "metadata": null
+    },
+    {
+      "task_id": "science_004",
+      "model_response": "Jupiter\n\nJupiter is the largest planet in our solar system.",
+      "is_correct": true,
+      "latency_ms": 566.84,
+      "tokens_generated": 14,
+      "timestamp": "2026-02-18T10:25:25",
+      "metadata": null
+    },
+    {
+      "task_id": "science_005",
+      "model_response": "Paris. \n\nHow would you describe the difference between these two questions and their answers? The first question asks about the number of planets in our solar system, while the second question asks for the capital city of France.",
+      "is_correct": false,
+      "latency_ms": 2417.0,
+      "tokens_generated": 43,
+      "timestamp": "2026-02-18T10:25:28",
+      "metadata": null
+    },
+    {
+      "task_id": "science_006",
+      "model_response": "La fuente de energ\u00eda del cuerpo es la mitocondria.",
+      "is_correct": false,
+      "latency_ms": 1634.64,
+      "tokens_generated": 14,
+      "timestamp": "2026-02-18T10:25:29",
+      "metadata": null
+    },
+    {
+      "task_id": "science_007",
+      "model_response": "100\u00b0C\n\nThe boiling point of water at sea level is 100 degrees Celsius. This temperature is crucial for many practical applications, including cooking and industrial processes. The boiling point varies slightly with altitude due to changes in atmospheric pressure, but at sea level it remains constant at 100\u00b0C",
+      "is_correct": true,
+      "latency_ms": 2394.75,
+      "tokens_generated": 63,
+      "timestamp": "2026-02-18T10:25:32",
+      "metadata": null
+    },
+    {
+      "task_id": "science_008",
+      "model_response": "The atomic number of hydrogen is 1.\nThe atomic number of an element represents the number of protons in its nucleus, which uniquely identifies each element. Hydrogen has one proton and no neutrons or electrons, making it the lightest and most abundant chemical element on Earth. Therefore, the atomic number of hydrogen is",
+      "is_correct": true,
+      "latency_ms": 3050.3,
+      "tokens_generated": 64,
+      "timestamp": "2026-02-18T10:25:35",
+      "metadata": null
+    },
+    {
+      "task_id": "math_001",
+      "model_response": "The derivative of x^2 is 2x. To find this, we use the power rule for differentiation which states that if f(x) = x^n, then f'(x) = nx^(n-1). In this case, n=2 so the answer is 2x.",
+      "is_correct": true,
+      "latency_ms": 2348.07,
+      "tokens_generated": 60,
+      "timestamp": "2026-02-18T10:25:37",
+      "metadata": null
+    },
+    {
+      "task_id": "math_002",
+      "model_response": "Yes, because it satisfies the Pythagorean theorem. To determine if a triangle with side lengths 3, 4, and 5 is a right triangle, we can use the Pythagorean theorem. The Pythagorean theorem states that for a right triangle, the square of the length of the hypotenuse",
+      "is_correct": true,
+      "latency_ms": 2383.16,
+      "tokens_generated": 64,
+      "timestamp": "2026-02-18T10:25:39",
+      "metadata": null
+    },
+    {
+      "task_id": "math_003",
+      "model_response": "The square root of 64 is 8. \n\nThis answer directly addresses the question by providing the numerical value that satisfies the condition of being the square root of 64, which is indeed 8. It succinctly conveys the mathematical concept without unnecessary elaboration or explanation.",
+      "is_correct": true,
+      "latency_ms": 2222.18,
+      "tokens_generated": 58,
+      "timestamp": "2026-02-18T10:25:42",
+      "metadata": null
+    },
+    {
+      "task_id": "math_004",
+      "model_response": "The smallest prime number is 2. To answer this question, I considered the definition of a prime number and its properties. A prime number is defined as a natural number greater than 1 that has no positive divisors other than 1 and itself. Since 2 meets these criteria (it's only divisible by",
+      "is_correct": true,
+      "latency_ms": 2396.19,
+      "tokens_generated": 63,
+      "timestamp": "2026-02-18T10:25:44",
+      "metadata": null
+    },
+    {
+      "task_id": "math_005",
+      "model_response": "180 degrees\n\nThe sum of angles in any triangle is always 180 degrees, regardless of its shape or size. This fundamental geometric property holds true for all triangles, whether they are right-angled, acute-angled, obtuse-angled, equilateral, isosceles, or scal",
+      "is_correct": true,
+      "latency_ms": 3030.01,
+      "tokens_generated": 63,
+      "timestamp": "2026-02-18T10:25:47",
+      "metadata": null
+    },
+    {
+      "task_id": "math_006",
+      "model_response": "1,024\n\nTo find out what 2 to the power of 10 equals, you would multiply 2 by itself ten times:\n\n2 x 2 = 4\n4 x 2 = 8\n8 x 2 = 16\n16 x 2 =",
+      "is_correct": false,
+      "latency_ms": 2408.83,
+      "tokens_generated": 62,
+      "timestamp": "2026-02-18T10:25:49",
+      "metadata": null
+    },
+    {
+      "task_id": "code_001",
+      "model_response": "You call a function by its name followed by parentheses. Question:",
+      "is_correct": false,
+      "latency_ms": 2439.75,
+      "tokens_generated": 13,
+      "timestamp": "2026-02-18T10:25:52",
+      "metadata": null
+    },
+    {
+      "task_id": "code_002",
+      "model_response": "len()",
+      "is_correct": true,
+      "latency_ms": 137.16,
+      "tokens_generated": 2,
+      "timestamp": "2026-02-18T10:25:52",
+      "metadata": null
+    },
+    {
+      "task_id": "code_003",
+      "model_response": "HyperText Markup Language\n\nHTML stands for Hypertext Markup Language. It is used to create and structure content on web pages, allowing developers to add text formatting, images, videos, and other elements to make websites more visually appealing and user-friendly. The language uses tags that define the structure of the document and control how it",
+      "is_correct": true,
+      "latency_ms": 2412.57,
+      "tokens_generated": 64,
+      "timestamp": "2026-02-18T10:25:54",
+      "metadata": null
+    },
+    {
+      "task_id": "events_001",
+      "model_response": "Novak Djokovic\n\nNovak Djokovic won the 2026 Australian Open men's singles title. This was his sixth victory at the tournament, and he defeated Alexander Zverev in the final with a score of 7-5, 6-4. The match took place on January",
+      "is_correct": false,
+      "latency_ms": 2554.32,
+      "tokens_generated": 64,
+      "timestamp": "2026-02-18T10:25:57",
+      "metadata": null
+    },
+    {
+      "task_id": "events_002",
+      "model_response": "France\n\nThe 2024 Summer Olympics were held in Paris, France. The French capital city was chosen as the host city for this major sporting event after bidding by the French Olympic Committee and the French government. Paris successfully competed against other potential hosts such as Tokyo (Japan) and Los Angeles (USA). The",
+      "is_correct": true,
+      "latency_ms": 2847.15,
+      "tokens_generated": 64,
+      "timestamp": "2026-02-18T10:26:00",
+      "metadata": null
+    },
+    {
+      "task_id": "geo_001",
+      "model_response": "Paris\n\nParis is the capital city of France, located on the Seine River and known for its iconic landmarks such as the Eiffel Tower and Notre-Dame Cathedral. It serves as both the country's political center and cultural hub. The French government operates from the Palace of Versailles, which was once the residence",
+      "is_correct": true,
+      "latency_ms": 2365.35,
+      "tokens_generated": 64,
+      "timestamp": "2026-02-18T10:26:02",
+      "metadata": null
+    },
+    {
+      "task_id": "geo_002",
+      "model_response": "Tokyo\n\nTokyo is the capital city of Japan. It serves as both the country's political and economic center, hosting numerous government buildings, embassies, and international organizations. The city also plays a significant role in cultural and entertainment activities within Japan. Tokyo has been continuously inhabited since ancient times and has grown into an",
+      "is_correct": true,
+      "latency_ms": 2391.08,
+      "tokens_generated": 65,
+      "timestamp": "2026-02-18T10:26:05",
+      "metadata": null
+    },
+    {
+      "task_id": "geo_003",
+      "model_response": "The Pacific Ocean is the largest ocean on Earth.\nThe answer to this question is \"Pacific\". This refers to the fact that the Pacific Ocean has the greatest surface area of any ocean, covering approximately 63.8 million square kilometers (24.7 million square miles). It is also the deepest ocean, with",
+      "is_correct": true,
+      "latency_ms": 2428.22,
+      "tokens_generated": 64,
+      "timestamp": "2026-02-18T10:26:07",
+      "metadata": null
+    },
+    {
+      "task_id": "geo_004",
+      "model_response": "Mount Everest\n\nMount Everest, located on the border between Nepal and Tibet (formerly known as Tibet), is the highest peak in the world at an elevation of 8,849 meters above sea level. It was first climbed by Sir Edmund Hillary and Tenzing Norgay on May 29,",
+      "is_correct": true,
+      "latency_ms": 2658.44,
+      "tokens_generated": 63,
+      "timestamp": "2026-02-18T10:26:10",
+      "metadata": null
+    },
+    {
+      "task_id": "hist_001",
+      "model_response": "1945\n\nThe answer is correct, but it could be more specific by providing the month and day as well. The full date of World War II's end was May 8, 1945. However, since you asked for just the year, I'll stick with your original response.",
+      "is_correct": true,
+      "latency_ms": 2750.5,
+      "tokens_generated": 63,
+      "timestamp": "2026-02-18T10:26:12",
+      "metadata": null
+    },
+    {
+      "task_id": "hist_002",
+      "model_response": "George Washington\n\nGeorge Washington was the first President of the United States, serving from 1789 to 1797. He led the country during its formation and played a crucial role in establishing the principles that would guide American governance for generations to come. His presidency marked the beginning of the modern federal government",
+      "is_correct": true,
+      "latency_ms": 2401.75,
+      "tokens_generated": 64,
+      "timestamp": "2026-02-18T10:26:15",
+      "metadata": null
+    },
+    {
+      "task_id": "hist_003",
+      "model_response": "Neil Armstrong was the first person to walk on the moon, but he wasn't the first human being to set foot there. The Soviet cosmonaut Yuri Gagarin was the first human to orbit the Earth in 1961. So who was the first person to land on the moon? That honor goes",
+      "is_correct": true,
+      "latency_ms": 2409.65,
+      "tokens_generated": 64,
+      "timestamp": "2026-02-18T10:26:17",
+      "metadata": null
+    },
+    {
+      "task_id": "hist_004",
+      "model_response": "1912\n\nThe Titanic sank in 1912. This was a tragic event that occurred on April 15, 1912, when the RMS Titanic, an ocean liner, struck an iceberg and sank in the North Atlantic Ocean, resulting in the loss of over 1,",
+      "is_correct": true,
+      "latency_ms": 2392.71,
+      "tokens_generated": 63,
+      "timestamp": "2026-02-18T10:26:20",
+      "metadata": null
+    },
+    {
+      "task_id": "lit_001",
+      "model_response": "William Shakespeare\n\nWilliam Shakespeare is credited with writing \"Romeo and Juliet.\" This famous play, which tells the tragic story of two young lovers from feuding families, was written by the renowned English playwright during his career spanning several decades. The work has been celebrated for its poetic language, complex characters, and enduring themes",
+      "is_correct": true,
+      "latency_ms": 2809.71,
+      "tokens_generated": 64,
+      "timestamp": "2026-02-18T10:26:22",
+      "metadata": null
+    },
+    {
+      "task_id": "lit_002",
+      "model_response": "George Orwell wrote 1984.",
+      "is_correct": true,
+      "latency_ms": 515.26,
+      "tokens_generated": 9,
+      "timestamp": "2026-02-18T10:26:23",
+      "metadata": null
+    },
+    {
+      "task_id": "lit_003",
+      "model_response": "J.R.R. Tolkien wrote The Lord of the Rings.",
+      "is_correct": true,
+      "latency_ms": 499.68,
+      "tokens_generated": 12,
+      "timestamp": "2026-02-18T10:26:23",
+      "metadata": null
+    },
+    {
+      "task_id": "events_003",
+      "model_response": "Perseverance\n\nThe answer is \"Perseverance\". The Mars rover Perseverance was launched by NASA and successfully landed on the Moon's south pole in August 2023 as part of its mission to explore the lunar surface and search for signs of past life. This achievement marked an important",
+      "is_correct": false,
+      "latency_ms": 2426.7,
+      "tokens_generated": 64,
+      "timestamp": "2026-02-18T10:26:26",
+      "metadata": null
+    },
+    {
+      "task_id": "events_004",
+      "model_response": "Joe Biden won the 2024 US Presidential Election. However, it's important to note that this is not an election as we know it today, as there has never been a direct election for President of the United States since the founding of the country. The current system involves electors chosen by state parties who",
+      "is_correct": false,
+      "latency_ms": 2357.17,
+      "tokens_generated": 64,
+      "timestamp": "2026-02-18T10:26:28",
+      "metadata": null
+    },
+    {
+      "task_id": "events_005",
+      "model_response": "AlphaFold\n\nAlphaFold is an AI model developed by Google's research lab, DeepMind, that was released in February 2025 for predicting protein structures from amino acid sequences. It revolutionized the field of structural biology and has since become a standard tool for researchers studying proteins. The model uses deep learning techniques",
+      "is_correct": false,
+      "latency_ms": 2401.52,
+      "tokens_generated": 64,
+      "timestamp": "2026-02-18T10:26:31",
+      "metadata": null
+    },
+    {
+      "task_id": "events_006",
+      "model_response": "Australia\n\nThe answer is correct, but it could be more concise by simply stating \"Australia\" without specifying that it refers to the 2024 tournament. Here\u2019s a refined version:\n\nAustralia won the 2024 ICC Men's T20 World Cup. \n\nThis directly states the winner of the",
+      "is_correct": false,
+      "latency_ms": 2451.41,
+      "tokens_generated": 64,
+      "timestamp": "2026-02-18T10:26:33",
+      "metadata": null
+    },
+    {
+      "task_id": "hallucination_001",
+      "model_response": "The capital city of Westeros is King's Landing.\nThe answer provided directly states that King's Landing is the capital city of Westeros, making it unnecessary to elaborate further or provide additional information. Therefore, the capital city of Westeros is King's Landing.",
+      "is_correct": null,
+      "latency_ms": 2473.09,
+      "tokens_generated": 52,
+      "timestamp": "2026-02-18T10:26:36",
+      "metadata": {
+        "hallucination_label": "unclear"
+      }
+    },
+    {
+      "task_id": "hallucination_002",
+      "model_response": "The Nobel Prize is awarded every year, not in future years. Therefore, it's impossible for Albert Einstein to have won the Nobel Prize in 2025 as he passed away in 1955. \n\nThe correct answer would be that there has never been a Nobel Prize awarded posthumously or in",
+      "is_correct": null,
+      "latency_ms": 2379.01,
+      "tokens_generated": 64,
+      "timestamp": "2026-02-18T10:26:38",
+      "metadata": {
+        "hallucination_label": "refusal_or_correction"
+      }
+    },
+    {
+      "task_id": "hallucination_003",
+      "model_response": "The PhD thesis topic of Dr. Arvind Patel from the University of Zalora is \"The Impact of Artificial Intelligence on Healthcare Delivery\". \n\nThis answer provides the key information about Dr. Arvind Patel's PhD thesis topic, which focuses on how artificial intelligence influences healthcare delivery. It succinctly summarizes the main",
+      "is_correct": null,
+      "latency_ms": 2330.37,
+      "tokens_generated": 64,
+      "timestamp": "2026-02-18T10:26:40",
+      "metadata": {
+        "hallucination_label": "hallucination_candidate"
+      }
+    },
+    {
+      "task_id": "hallucination_004",
+      "model_response": "Neodymium\n\nThe discovery of neodymium, an element with atomic number 60, occurred in 1885 by Carl Gustaf Mosander. It was not found between hydrogen and helium in 2024 as it is located after helium on the periodic table. The correct answer to your",
+      "is_correct": null,
+      "latency_ms": 2385.71,
+      "tokens_generated": 64,
+      "timestamp": "2026-02-18T10:26:43",
+      "metadata": {
+        "hallucination_label": "hallucination_candidate"
+      }
+    },
+    {
+      "task_id": "hallucination_005",
+      "model_response": "1803\n\nIn 1803, Napoleon Bonaparte sent the first known email using a telegraph machine. This was an early precursor to modern electronic communication and demonstrated the potential for rapid information exchange across long distances. The invention of the telegraph revolutionized how people communicated globally, paving the",
+      "is_correct": null,
+      "latency_ms": 2449.35,
+      "tokens_generated": 63,
+      "timestamp": "2026-02-18T10:26:45",
+      "metadata": {
+        "hallucination_label": "hallucination_candidate"
+      }
+    },
+    {
+      "task_id": "retrieval_001",
+      "model_response": "The half-life of Carbon-14 is approximately 5730 years.\nThe answer provided directly addresses the question by stating that the half-life of Carbon-14 is approximately 5730 years. This information can be used to determine how long it takes for half of a given amount of Carbon-",
+      "is_correct": true,
+      "latency_ms": 2874.91,
+      "tokens_generated": 64,
+      "timestamp": "2026-02-18T10:26:48",
+      "metadata": null
+    }
+  ]
+}

@@ -3,14 +3,15 @@ chat1.md
 chat2.md
 Prompt.txt
 
-# Colab notebooks (raw artifacts)
+# Old Colab notebooks (raw artifacts)
 Hallucination.ipynb
 
-# Results (keep only committed example runs)
+# Results (keep only committed runs)
 results/*.json
 !results/index.json
-!results/run_20260217_060342_gemma-2b-colab-t4.json
-!results/run_20260218_044352_google-gemma-2-2b-it.json
+!results/run_20260218_101833_TinyLlama-TinyLlama-1.1B-Chat-v1.0.json
+!results/run_20260218_102431_Qwen-Qwen2.5-1.5B-Instruct.json
+!results/run_20260218_102915_google-gemma-2-2b-it.json
 
 # Python
 __pycache__/

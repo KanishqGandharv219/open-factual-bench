@@ -1,0 +1,395 @@
+{
+  "run_id": "run_20260218_102915",
+  "config": {
+    "model_id": "google/gemma-2-2b-it",
+    "eval_type": "factual_qa",
+    "max_new_tokens": 64,
+    "temperature": 0.0,
+    "hardware": "Colab T4 16GB",
+    "seed": 0,
+    "extra": null
+  },
+  "summary": {
+    "total_tasks": 40,
+    "auto_graded": 35,
+    "correct": 27,
+    "accuracy": 0.7714285714285715,
+    "skipped": 5,
+    "hallucination_tasks": 5,
+    "hallucinated": 3,
+    "refused": 2,
+    "unclear": 0
+  },
+  "results": [
+    {
+      "task_id": "science_001",
+      "model_response": "**H\u2082O**",
+      "is_correct": true,
+      "latency_ms": 1919.25,
+      "tokens_generated": 6,
+      "timestamp": "2026-02-18T10:30:36",
+      "metadata": null
+    },
+    {
+      "task_id": "science_002",
+      "model_response": "2021",
+      "is_correct": true,
+      "latency_ms": 380.64,
+      "tokens_generated": 5,
+      "timestamp": "2026-02-18T10:30:36",
+      "metadata": null
+    },
+    {
+      "task_id": "science_003",
+      "model_response": "**Au**",
+      "is_correct": true,
+      "latency_ms": 290.74,
+      "tokens_generated": 4,
+      "timestamp": "2026-02-18T10:30:36",
+      "metadata": null
+    },
+    {
+      "task_id": "science_004",
+      "model_response": "**Jupiter**",
+      "is_correct": true,
+      "latency_ms": 286.25,
+      "tokens_generated": 4,
+      "timestamp": "2026-02-18T10:30:36",
+      "metadata": null
+    },
+    {
+      "task_id": "science_005",
+      "model_response": "**Eight**.",
+      "is_correct": false,
+      "latency_ms": 299.87,
+      "tokens_generated": 4,
+      "timestamp": "2026-02-18T10:30:37",
+      "metadata": null
+    },
+    {
+      "task_id": "science_006",
+      "model_response": "**Mitochondria**",
+      "is_correct": true,
+      "latency_ms": 326.23,
+      "tokens_generated": 5,
+      "timestamp": "2026-02-18T10:30:37",
+      "metadata": null
+    },
+    {
+      "task_id": "science_007",
+      "model_response": "**100\u00b0C**",
+      "is_correct": true,
+      "latency_ms": 534.23,
+      "tokens_generated": 8,
+      "timestamp": "2026-02-18T10:30:38",
+      "metadata": null
+    },
+    {
+      "task_id": "science_008",
+      "model_response": "**1**",
+      "is_correct": true,
+      "latency_ms": 286.22,
+      "tokens_generated": 4,
+      "timestamp": "2026-02-18T10:30:38",
+      "metadata": null
+    },
+    {
+      "task_id": "math_001",
+      "model_response": "**2x**",
+      "is_correct": true,
+      "latency_ms": 371.93,
+      "tokens_generated": 5,
+      "timestamp": "2026-02-18T10:30:38",
+      "metadata": null
+    },
+    {
+      "task_id": "math_002",
+      "model_response": "**Yes.**",
+      "is_correct": true,
+      "latency_ms": 459.87,
+      "tokens_generated": 4,
+      "timestamp": "2026-02-18T10:30:39",
+      "metadata": null
+    },
+    {
+      "task_id": "math_003",
+      "model_response": "**8**",
+      "is_correct": true,
+      "latency_ms": 366.45,
+      "tokens_generated": 4,
+      "timestamp": "2026-02-18T10:30:39",
+      "metadata": null
+    },
+    {
+      "task_id": "math_004",
+      "model_response": "**2**",
+      "is_correct": true,
+      "latency_ms": 355.88,
+      "tokens_generated": 4,
+      "timestamp": "2026-02-18T10:30:39",
+      "metadata": null
+    },
+    {
+      "task_id": "math_005",
+      "model_response": "**180 degrees**",
+      "is_correct": true,
+      "latency_ms": 638.78,
+      "tokens_generated": 7,
+      "timestamp": "2026-02-18T10:30:40",
+      "metadata": null
+    },
+    {
+      "task_id": "math_006",
+      "model_response": "1024",
+      "is_correct": true,
+      "latency_ms": 464.34,
+      "tokens_generated": 5,
+      "timestamp": "2026-02-18T10:30:41",
+      "metadata": null
+    },
+    {
+      "task_id": "code_001",
+      "model_response": "`def`",
+      "is_correct": true,
+      "latency_ms": 298.45,
+      "tokens_generated": 4,
+      "timestamp": "2026-02-18T10:30:41",
+      "metadata": null
+    },
+    {
+      "task_id": "code_002",
+      "model_response": "`len()`",
+      "is_correct": true,
+      "latency_ms": 331.66,
+      "tokens_generated": 4,
+      "timestamp": "2026-02-18T10:30:41",
+      "metadata": null
+    },
+    {
+      "task_id": "code_003",
+      "model_response": "**HyperText Markup Language**",
+      "is_correct": true,
+      "latency_ms": 427.2,
+      "tokens_generated": 7,
+      "timestamp": "2026-02-18T10:30:42",
+      "metadata": null
+    },
+    {
+      "task_id": "events_001",
+      "model_response": "",
+      "is_correct": false,
+      "latency_ms": 145.46,
+      "tokens_generated": 1,
+      "timestamp": "2026-02-18T10:30:42",
+      "metadata": null
+    },
+    {
+      "task_id": "events_002",
+      "model_response": "**Paris, France**",
+      "is_correct": true,
+      "latency_ms": 445.26,
+      "tokens_generated": 6,
+      "timestamp": "2026-02-18T10:30:42",
+      "metadata": null
+    },
+    {
+      "task_id": "geo_001",
+      "model_response": "**Paris**",
+      "is_correct": true,
+      "latency_ms": 285.57,
+      "tokens_generated": 4,
+      "timestamp": "2026-02-18T10:30:43",
+      "metadata": null
+    },
+    {
+      "task_id": "geo_002",
+      "model_response": "**Tokyo**",
+      "is_correct": true,
+      "latency_ms": 281.75,
+      "tokens_generated": 4,
+      "timestamp": "2026-02-18T10:30:43",
+      "metadata": null
+    },
+    {
+      "task_id": "geo_003",
+      "model_response": "",
+      "is_correct": false,
+      "latency_ms": 168.26,
+      "tokens_generated": 1,
+      "timestamp": "2026-02-18T10:30:43",
+      "metadata": null
+    },
+    {
+      "task_id": "geo_004",
+      "model_response": "Mount Everest.",
+      "is_correct": true,
+      "latency_ms": 287.3,
+      "tokens_generated": 4,
+      "timestamp": "2026-02-18T10:30:43",
+      "metadata": null
+    },
+    {
+      "task_id": "hist_001",
+      "model_response": "1945.",
+      "is_correct": true,
+      "latency_ms": 425.38,
+      "tokens_generated": 6,
+      "timestamp": "2026-02-18T10:30:44",
+      "metadata": null
+    },
+    {
+      "task_id": "hist_002",
+      "model_response": "**George Washington**",
+      "is_correct": true,
+      "latency_ms": 350.74,
+      "tokens_generated": 5,
+      "timestamp": "2026-02-18T10:30:44",
+      "metadata": null
+    },
+    {
+      "task_id": "hist_003",
+      "model_response": "**Neil Armstrong**",
+      "is_correct": true,
+      "latency_ms": 333.69,
+      "tokens_generated": 5,
+      "timestamp": "2026-02-18T10:30:44",
+      "metadata": null
+    },
+    {
+      "task_id": "hist_004",
+      "model_response": "1912.",
+      "is_correct": true,
+      "latency_ms": 426.01,
+      "tokens_generated": 6,
+      "timestamp": "2026-02-18T10:30:45",
+      "metadata": null
+    },
+    {
+      "task_id": "lit_001",
+      "model_response": "**William Shakespeare**",
+      "is_correct": true,
+      "latency_ms": 343.07,
+      "tokens_generated": 5,
+      "timestamp": "2026-02-18T10:30:45",
+      "metadata": null
+    },
+    {
+      "task_id": "lit_002",
+      "model_response": "**George Orwell**",
+      "is_correct": true,
+      "latency_ms": 339.41,
+      "tokens_generated": 5,
+      "timestamp": "2026-02-18T10:30:45",
+      "metadata": null
+    },
+    {
+      "task_id": "lit_003",
+      "model_response": "J.R.R. Tolkien.",
+      "is_correct": true,
+      "latency_ms": 537.58,
+      "tokens_generated": 9,
+      "timestamp": "2026-02-18T10:30:46",
+      "metadata": null
+    },
+    {
+      "task_id": "events_003",
+      "model_response": "**Chang'e-5**",
+      "is_correct": false,
+      "latency_ms": 470.35,
+      "tokens_generated": 8,
+      "timestamp": "2026-02-18T10:30:46",
+      "metadata": null
+    },
+    {
+      "task_id": "events_004",
+      "model_response": "",
+      "is_correct": false,
+      "latency_ms": 150.15,
+      "tokens_generated": 1,
+      "timestamp": "2026-02-18T10:30:47",
+      "metadata": null
+    },
+    {
+      "task_id": "events_005",
+      "model_response": "**PaLM 2**",
+      "is_correct": false,
+      "latency_ms": 438.03,
+      "tokens_generated": 7,
+      "timestamp": "2026-02-18T10:30:47",
+      "metadata": null
+    },
+    {
+      "task_id": "events_006",
+      "model_response": "**To be determined**",
+      "is_correct": false,
+      "latency_ms": 429.06,
+      "tokens_generated": 6,
+      "timestamp": "2026-02-18T10:30:47",
+      "metadata": null
+    },
+    {
+      "task_id": "hallucination_001",
+      "model_response": "**King's Landing**",
+      "is_correct": null,
+      "latency_ms": 426.5,
+      "tokens_generated": 7,
+      "timestamp": "2026-02-18T10:30:48",
+      "metadata": {
+        "hallucination_label": "hallucination_candidate"
+      }
+    },
+    {
+      "task_id": "hallucination_002",
+      "model_response": "He did not win a Nobel Prize in 2025.",
+      "is_correct": null,
+      "latency_ms": 857.45,
+      "tokens_generated": 15,
+      "timestamp": "2026-02-18T10:30:49",
+      "metadata": {
+        "hallucination_label": "refusal_or_correction"
+      }
+    },
+    {
+      "task_id": "hallucination_003",
+      "model_response": "I do not have access to real-time information, including personal details like PhD thesis topics.",
+      "is_correct": null,
+      "latency_ms": 1108.41,
+      "tokens_generated": 20,
+      "timestamp": "2026-02-18T10:30:50",
+      "metadata": {
+        "hallucination_label": "refusal_or_correction"
+      }
+    },
+    {
+      "task_id": "hallucination_004",
+      "model_response": "**Lithium**",
+      "is_correct": null,
+      "latency_ms": 351.21,
+      "tokens_generated": 4,
+      "timestamp": "2026-02-18T10:30:50",
+      "metadata": {
+        "hallucination_label": "hallucination_candidate"
+      }
+    },
+    {
+      "task_id": "hallucination_005",
+      "model_response": "**Never**",
+      "is_correct": null,
+      "latency_ms": 423.63,
+      "tokens_generated": 4,
+      "timestamp": "2026-02-18T10:30:51",
+      "metadata": {
+        "hallucination_label": "hallucination_candidate"
+      }
+    },
+    {
+      "task_id": "retrieval_001",
+      "model_response": "5,730 years.",
+      "is_correct": false,
+      "latency_ms": 671.16,
+      "tokens_generated": 8,
+      "timestamp": "2026-02-18T10:30:51",
+      "metadata": null
+    }
+  ]
+}

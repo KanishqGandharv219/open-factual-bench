@@ -1,0 +1,41 @@
+{
+    "description": "Registry of canonical benchmark runs for open-factual-bench.",
+    "runs": [
+        {
+            "file": "run_20260218_101833_TinyLlama-TinyLlama-1.1B-Chat-v1.0.json",
+            "model_id": "TinyLlama/TinyLlama-1.1B-Chat-v1.0",
+            "hardware": "Colab T4 16GB",
+            "accuracy": 0.457,
+            "correct": 16,
+            "graded": 35,
+            "total_tasks": 40,
+            "hallucinated": 4,
+            "refused": 0,
+            "date": "2026-02-18"
+        },
+        {
+            "file": "run_20260218_102431_Qwen-Qwen2.5-1.5B-Instruct.json",
+            "model_id": "Qwen/Qwen2.5-1.5B-Instruct",
+            "hardware": "Colab T4 16GB",
+            "accuracy": 0.743,
+            "correct": 26,
+            "graded": 35,
+            "total_tasks": 40,
+            "hallucinated": 3,
+            "refused": 1,
+            "date": "2026-02-18"
+        },
+        {
+            "file": "run_20260218_102915_google-gemma-2-2b-it.json",
+            "model_id": "google/gemma-2-2b-it",
+            "hardware": "Colab T4 16GB",
+            "accuracy": 0.771,
+            "correct": 27,
+            "graded": 35,
+            "total_tasks": 40,
+            "hallucinated": 3,
+            "refused": 2,
+            "date": "2026-02-18"
+        }
+    ]
+}

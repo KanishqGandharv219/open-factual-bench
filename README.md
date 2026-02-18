@@ -80,6 +80,7 @@ open-factual-bench/
 │   └── results_schema.py    # TaskResult + BenchmarkRun dataclasses
 ├── run_benchmark.py         # CLI: evaluate any HF model against tasks
 ├── analyze_results.py       # Multi-run analysis (per-domain, hallucination stats)
+├── open_factual_bench_colab.ipynb  # Colab notebook: run benchmarks on GPU
 ├── run_example_offline.py   # Offline simulation runner
 ├── recompute_scores.py      # Re-score existing result files
 ├── test_example_tasks.py    # Smoke test: list tasks + print config
@@ -127,23 +128,24 @@ If none of these match → **incorrect**.
 
 This keeps scoring deterministic and fast while handling the most common failure modes from real model outputs (verbose answers, Unicode variants, extra context).
 
-## Example Run: Gemma-2B-IT on Colab T4
+## Benchmark Results (40 tasks, Colab T4 16GB)
 
-Run via `python run_benchmark.py --model_id google/gemma-2-2b-it --hardware "Colab T4 16GB"` on Feb 18, 2026.
+All runs use the full 40-task suite (35 auto-graded + 5 hallucination stress-tests) on a Colab T4 GPU, Feb 18 2026.
 
-| Metric | Value |
-|--------|-------|
-| Accuracy | **90.0%** (27/30 auto-graded) |
-| Skipped | 2 (hallucination stress-tests, not auto-gradable) |
-| Duration | 13.5s |
+| Model | Params | Accuracy | Hallucinated | Refused | Unclear |
+|:------|:-------|:---------|:-------------|:--------|:--------|
+| `google/gemma-2-2b-it` | 2B | **77.1%** (27/35) | 3 | 2 | 0 |
+| `Qwen/Qwen2.5-1.5B-Instruct` | 1.5B | **74.3%** (26/35) | 3 | 1 | 1 |
+| `TinyLlama/TinyLlama-1.1B-Chat-v1.0` | 1.1B | **45.7%** (16/35) | 4 | 0 | 1 |
 
-**Notable observations:**
-- **Hallucination detected**: The model answered "King's Landing" for the fictional country Westeros — a classic hallucination (treating fiction as fact).
-- **Correct refusal**: For the false-premise Einstein/2025 question, the model correctly responded "He did not win a Nobel Prize in 2025."
-- **Post-training-cutoff**: The 2026 Australian Open question returned an empty response — the model correctly doesn't fabricate unknown facts.
-- **Scoring edge case**: "Eight" vs "8" — the scorer doesn't yet convert number words to digits (future improvement).
+**Key findings:**
+- **Gemma-2B-IT leads** with 77.1% accuracy and the best hallucination resistance (2 correct refusals out of 5 stress-tests).
+- **Qwen2.5-1.5B** is competitive at 74.3% despite being smaller (1.5B vs 2B), strong on factual recall.
+- **TinyLlama** struggles at 45.7%, with zero refusals on hallucination tasks — it confidently answers all false-premise questions.
+- **All models fail on post-training-cutoff current events** (2024 elections, Gemini 2 release, T20 World Cup 2024).
+- **Scoring edge case**: "Eight" vs "8" — the scorer doesn't yet convert number words to digits (Gemma answered "**Eight**" for the planet count).
 
-Full results: `results/run_20260217_060342_gemma-2b-colab-t4.json`
+Full results: `results/` directory, registered in `results/index.json`.
 
 ## Task Design Notes
 
