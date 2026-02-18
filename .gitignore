@@ -8,6 +8,7 @@ Hallucination.ipynb
 
 # Results (keep only committed example runs)
 results/*.json
+!results/index.json
 !results/run_20260217_060342_gemma-2b-colab-t4.json
 !results/run_20260218_044352_google-gemma-2-2b-it.json
 

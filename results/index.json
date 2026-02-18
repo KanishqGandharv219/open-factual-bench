@@ -1,0 +1,23 @@
+{
+    "description": "Canonical benchmark runs tracked in this repository.",
+    "runs": [
+        {
+            "file": "run_20260217_060342_gemma-2b-colab-t4.json",
+            "model_id": "google/gemma-2b",
+            "hardware": "Colab T4 16GB",
+            "accuracy": 0.19,
+            "tasks": 6,
+            "date": "2026-02-17",
+            "notes": "Early 6-task run, pre-framework expansion"
+        },
+        {
+            "file": "run_20260218_044352_google-gemma-2-2b-it.json",
+            "model_id": "google/gemma-2-2b-it",
+            "hardware": "Colab T4 16GB",
+            "accuracy": 0.90,
+            "tasks": 32,
+            "date": "2026-02-18",
+            "notes": "First full framework run (32 tasks), 90% accuracy"
+        }
+    ]
+}
