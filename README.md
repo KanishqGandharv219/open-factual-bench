@@ -127,6 +127,21 @@ If none of these match → **incorrect**.
 
 This keeps scoring deterministic and fast while handling the most common failure modes from real model outputs (verbose answers, Unicode variants, extra context).
 
-## Example Run
+## Example Run: Gemma-2B-IT on Colab T4
 
-The file `results/run_20260217_060342_gemma-2b-colab-t4.json` contains a real evaluation of `google/gemma-2-2b-it` on a Colab T4 GPU, including per-task outputs, correctness flags, and latency per query.
+Run via `python run_benchmark.py --model_id google/gemma-2-2b-it --hardware "Colab T4 16GB"` on Feb 18, 2026.
+
+| Metric | Value |
+|--------|-------|
+| Accuracy | **90.0%** (27/30 auto-graded) |
+| Skipped | 2 (hallucination stress-tests, not auto-gradable) |
+| Duration | 13.5s |
+
+**Notable observations:**
+- **Hallucination detected**: The model answered "King's Landing" for the fictional country Westeros — a classic hallucination (treating fiction as fact).
+- **Correct refusal**: For the false-premise Einstein/2025 question, the model correctly responded "He did not win a Nobel Prize in 2025."
+- **Post-training-cutoff**: The 2026 Australian Open question returned an empty response — the model correctly doesn't fabricate unknown facts.
+- **Scoring edge case**: "Eight" vs "8" — the scorer doesn't yet convert number words to digits (future improvement).
+
+Full results: `results/run_20260217_060342_gemma-2b-colab-t4.json`
+
