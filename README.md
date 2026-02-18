@@ -42,22 +42,18 @@ python run_benchmark.py --model_id google/gemma-2-2b-it --device cpu --hardware 
 
 Results are saved to `results/` as structured JSON files.
 
-## Preliminary Results (Gemma Family — 100-question Colab Evaluation)
+## Prior Work: Gemma Family Comparison (100-question evaluation)
 
-Evaluation on 100 factual questions covering geography, math, science, history, literature, and general knowledge. Run on Google Colab with a T4 GPU.
+Before building this framework, we ran an ad-hoc 100-question factual QA evaluation in a separate repo: [gemma-mini-benchmark](https://github.com/KanishqGandharv219/gemma-mini-benchmark). Key findings from that evaluation (Colab T4 GPU):
 
-| Model | Params | Type | Precision | Accuracy |
-|:------|:-------|:-----|:----------|:---------|
-| `google/gemma-2b` | 2B | Base | fp16 | 19.00% |
-| `google/gemma-2b-it` | 2B | Instruct | fp16 | **85.00%** |
-| `google/gemma-7b` | 7B | Base | fp16 | 21.00% |
-| `google/gemma-7b-it` | 7B | Instruct | fp16 | 69.00% |
+| Model | Params | Type | Accuracy |
+|:------|:-------|:-----|:---------|
+| `google/gemma-2b` | 2B | Base | 19% |
+| `google/gemma-2b-it` | 2B | Instruct | **85%** |
+| `google/gemma-7b` | 7B | Base | 21% |
+| `google/gemma-7b-it` | 7B | Instruct | 69% |
 
-### Key Findings
-
-1. **Instruction tuning is critical**: 2B-IT achieves +66 pp over 2B Base (19% → 85%). Base models generate continuations instead of direct answers.
-2. **Scale alone doesn't guarantee better performance**: 7B Base only adds +2% over 2B Base (19% → 21%).
-3. **Surprising result**: 2B-IT (85%) outperforms 7B-IT (69%) — likely due to memory-constrained generation budget on the larger model.
+**Takeaways**: Instruction tuning matters more than scale (+66pp for 2B-IT vs 2B Base). That early work motivated building this structured framework.
 
 ## High-level Design
 
