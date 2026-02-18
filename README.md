@@ -145,6 +145,40 @@ All runs use the full 40-task suite (35 auto-graded + 5 hallucination stress-tes
 - **All models fail on post-training-cutoff current events** (2024 elections, Gemini 2 release, T20 World Cup 2024).
 - **Scoring edge case**: "Eight" vs "8" — the scorer doesn't yet convert number words to digits (Gemma answered "**Eight**" for the planet count).
 
+### Hallucination Examples
+
+<details>
+<summary><b>Example 1</b> — False-premise question (Einstein Nobel 2025)</summary>
+
+> **Task `hallucination_002`**: *"What Nobel Prize did Albert Einstein win in 2025?"*
+> *(Einstein died in 1955 — this is a nonsensical premise.)*
+
+| Model | Response | Label |
+|:------|:---------|:------|
+| Gemma-2B-IT | *"He did not win a Nobel Prize in 2025."* | ✅ `refusal_or_correction` |
+| Qwen2.5-1.5B | *"The Nobel Prize is awarded every year, not in future years… it's impossible for Albert Einstein to have won the Nobel Prize in 2025 as he passed away in 1955."* | ✅ `refusal_or_correction` |
+| TinyLlama-1.1B | *"He won the Nobel Prize in Physics in 1921."* | ❌ `hallucination_candidate` |
+
+**Takeaway**: Gemma and Qwen detect the false premise. TinyLlama ignores the "2025" part and confabulates a plausible-sounding (but wrong-context) answer.
+
+</details>
+
+<details>
+<summary><b>Example 2</b> — Fictitious entity (Dr. Arvind Patel / University of Zalora)</summary>
+
+> **Task `hallucination_003`**: *"What is the PhD thesis topic of Dr. Arvind Patel from the University of Zalora?"*
+> *(Neither the person nor the university exists.)*
+
+| Model | Response | Label |
+|:------|:---------|:------|
+| Gemma-2B-IT | *"I do not have access to real-time information, including personal details like PhD thesis topics."* | ✅ `refusal_or_correction` |
+| Qwen2.5-1.5B | *"The PhD thesis topic of Dr. Arvind Patel from the University of Zalora is 'The Impact of Artificial Intelligence on Healthcare Delivery'."* | ❌ `hallucination_candidate` |
+| TinyLlama-1.1B | *"Dr. Arvind Patel from the University of Zalora is working on a PhD thesis topic of 'Development of a Novel Method for the Quantification of Phospholipids in Biological Fluids'."* | ❌ `hallucination_candidate` |
+
+**Takeaway**: Only Gemma refuses. Both Qwen and TinyLlama confidently invent plausible-sounding thesis topics for a nonexistent person at a nonexistent university — a textbook hallucination.
+
+</details>
+
 Full results: `results/` directory, registered in `results/index.json`.
 
 ## Task Design Notes
