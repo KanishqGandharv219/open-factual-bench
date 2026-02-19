@@ -79,11 +79,12 @@ open-factual-bench/
 │   ├── scoring.py           # Scoring engine + hallucination labeling
 │   └── results_schema.py    # TaskResult + BenchmarkRun dataclasses
 ├── run_benchmark.py         # CLI: evaluate any HF model against tasks
-├── analyze_results.py       # Multi-run analysis (per-domain, hallucination stats)
+├── analyze_results.py       # Multi-run analysis + leaderboard HTML generation
+├── leaderboard.html         # Static HTML leaderboard (auto-generated)
 ├── open_factual_bench_colab.ipynb  # Colab notebook: run benchmarks on GPU
 ├── run_example_offline.py   # Offline simulation runner
 ├── recompute_scores.py      # Re-score existing result files
-├── test_example_tasks.py    # Smoke test: list tasks + print config
+├── test_example_tasks.py    # Test suite: tasks, scoring, normalization
 └── results/
     ├── index.json           # Registry of canonical runs
     └── run_*.json           # Saved benchmark results
@@ -94,9 +95,9 @@ open-factual-bench/
 - [x] Define core task and config schema
 - [x] Add provenance fields for contamination-aware design (`source`, `created_at`)
 - [x] Implement factual QA task set (40 tasks, 8 domains)
-- [x] Implement scoring (Unicode normalization, substring matching, hallucination labeling)
+- [x] Implement scoring (Unicode normalization, number-word conversion, numeric tolerance, hallucination labeling)
 - [x] Create CLI model runner with task/domain filtering
-- [x] Create analysis script (per-model, per-domain, hallucination stats)
+- [x] Create analysis script (per-model, per-domain, hallucination stats, HTML leaderboard)
 - [x] Evaluate Gemma 2B/7B family (base + instruction-tuned)
 - [ ] Evaluate more open models (e.g. Llama, Mistral, Phi)
 - [ ] Build a simple leaderboard UI
@@ -134,16 +135,16 @@ All runs use the full 40-task suite (35 auto-graded + 5 hallucination stress-tes
 
 | Model | Params | Accuracy | Hallucinated | Refused | Unclear |
 |:------|:-------|:---------|:-------------|:--------|:--------|
-| `google/gemma-2-2b-it` | 2B | **77.1%** (27/35) | 3 | 2 | 0 |
+| `google/gemma-2-2b-it` | 2B | **80.0%** (28/35) | 3 | 2 | 0 |
 | `Qwen/Qwen2.5-1.5B-Instruct` | 1.5B | **74.3%** (26/35) | 3 | 1 | 1 |
 | `TinyLlama/TinyLlama-1.1B-Chat-v1.0` | 1.1B | **45.7%** (16/35) | 4 | 0 | 1 |
 
 **Key findings:**
-- **Gemma-2B-IT leads** with 77.1% accuracy and the best hallucination resistance (2 correct refusals out of 5 stress-tests).
+- **Gemma-2B-IT leads** with 80.0% accuracy and the best hallucination resistance (2 correct refusals out of 5 stress-tests).
 - **Qwen2.5-1.5B** is competitive at 74.3% despite being smaller (1.5B vs 2B), strong on factual recall.
 - **TinyLlama** struggles at 45.7%, with zero refusals on hallucination tasks — it confidently answers all false-premise questions.
 - **All models fail on post-training-cutoff current events** (2024 elections, Gemini 2 release, T20 World Cup 2024).
-- **Scoring edge case**: "Eight" vs "8" — the scorer doesn't yet convert number words to digits (Gemma answered "**Eight**" for the planet count).
+- ~~**Scoring edge case**: "Eight" vs "8"~~ — **Fixed** in v2 scorer with number-word normalization (see [Issue #1](https://github.com/KanishqGandharv219/open-factual-bench/issues/1)).
 
 ### Hallucination Examples
 
@@ -234,23 +235,24 @@ This project draws design inspiration from several evaluation efforts:
 The `score_task()` function in `bench/scoring.py` applies the following pipeline:
 
 1. **Skip non-gradable tasks** — If the reference answer is a placeholder (`[...]`) or longer than 80 characters (e.g. hallucination stress-test instructions like *"This is a fictional setting; models should refuse…"*), the scorer returns `None`. These tasks are excluded from accuracy calculations.
-2. **Normalize** — Both prediction and reference are Unicode-normalized (NFKD), lowercased, whitespace-collapsed, and stripped of leading articles ("the", "a", "an").
+2. **Normalize** — Both prediction and reference are Unicode-normalized (NFKD), lowercased, whitespace-collapsed, and stripped of leading articles ("the", "a", "an"). Number words are converted to digits ("eight" → "8").
 3. **Exact match** — If the normalized strings are identical → **correct**.
 4. **Substring containment** — If the normalized reference appears within the first line of the prediction → **correct**. This handles models that answer "Paris is the capital of France" when the reference is just "Paris".
-5. **Short-answer token match** — For references ≤5 characters (e.g. "8", "Au", "def"), the scorer also checks if the reference appears as a standalone token in the first line.
+5. **Numeric tolerance** — If both prediction and reference parse as floats, accept if `abs(pred - ref) < 0.01`.
+6. **Short-answer token match** — For references ≤5 characters (e.g. "8", "Au", "def"), the scorer also checks if the reference appears as a standalone token in the first line.
 
 If none of these match → **incorrect**.
 
-This keeps scoring deterministic and fast while handling the most common failure modes from real model outputs (verbose answers, Unicode variants, extra context).
+This keeps scoring deterministic and fast while handling the most common failure modes from real model outputs (verbose answers, Unicode variants, number words, extra context).
 
 ## Future Work
 
-- **Number-word ↔ digit normalization** — Convert "eight" to 8 and vice versa for more robust matching
-- **Numeric tolerance** — Accept 3.14 when reference is 3.1416 (configurable epsilon)
+- ~~**Number-word ↔ digit normalization**~~ — **Done.** "eight" → "8" conversion in `_normalize_numbers()`
+- ~~**Numeric tolerance**~~ — **Done.** Accept 3.14 when reference is 3.1416 (epsilon=0.01)
 - **Richer hallucination classification** — Distinguish confident-wrong vs uncertain vs refusal using lightweight judge models
 - **Retrieval-augmented mode** — Provide context passages for RAG-style evaluation with citation checking
 - **Semantic similarity scoring** — Use embedding similarity for paraphrase-equivalent answers
-- **Small leaderboard / proto-dashboard** — Static HTML table generated from `analyze_results.py` output
+- ~~**Small leaderboard / proto-dashboard**~~ — **Done.** See [`leaderboard.html`](leaderboard.html) (generated via `analyze_results.py --html`)
 - **More models** — Evaluate Llama, Mistral, Phi, Qwen, and other open families
 
 ## Relevance to GSoC
@@ -261,17 +263,19 @@ This project is a practical first step toward the kind of evaluation infrastruct
 - **ML4Sci / DeepLense** — Demonstrates reproducible evaluation discipline: versioned configs, hardware-aware runs, and structured result files, which are transferable skills for any ML reproducibility project.
 - **General evaluation infrastructure** — Schema design, scoring pipelines, and analysis tooling that generalise to any model evaluation task.
 
-## Leaderboard Target
+## Leaderboard
 
-The next milestone is a static, Markdown-rendered leaderboard (generated by `analyze_results.py`):
+A premium, interactive HTML leaderboard is generated from the benchmark results:
 
-| Column | Description |
-|--------|-------------|
-| Model | HF model ID |
-| Hardware | GPU/CPU used |
-| Accuracy | Auto-graded score |
-| Halluc. | Hallucination candidates |
-| Refused | Correct refusals |
-| Date | Run date |
+```bash
+python analyze_results.py --html leaderboard.html results/run_*.json
+```
 
-This will be auto-generated from `results/index.json` as more model runs are added.
+Open [`leaderboard.html`](leaderboard.html) in a browser to see a modern, sortable comparison table with:
+- **Clean Interface**: Light theme with glassmorphism effects and Inter typography
+- **Interactive Visuals**: Antigravity-inspired particle system with organic blob motion
+- **Key Metrics**: Accuracy, Hallucination counts, Refusal rates, and Hardware metadata
+
+The leaderboard auto-regenerates from `results/index.json` as more model runs are added.
+
+**Live Demo**: [kanishqgandharv219.github.io/open-factual-bench](https://kanishqgandharv219.github.io/open-factual-bench/)

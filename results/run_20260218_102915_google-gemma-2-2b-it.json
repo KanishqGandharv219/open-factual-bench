@@ -12,8 +12,8 @@
   "summary": {
     "total_tasks": 40,
     "auto_graded": 35,
-    "correct": 27,
-    "accuracy": 0.7714285714285715,
+    "correct": 28,
+    "accuracy": 0.8,
     "skipped": 5,
     "hallucination_tasks": 5,
     "hallucinated": 3,
@@ -60,7 +60,7 @@
     {
       "task_id": "science_005",
       "model_response": "**Eight**.",
-      "is_correct": false,
+      "is_correct": true,
       "latency_ms": 299.87,
       "tokens_generated": 4,
       "timestamp": "2026-02-18T10:30:37",

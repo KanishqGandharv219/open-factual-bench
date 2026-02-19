@@ -24,6 +24,49 @@ def _normalize(text: str) -> str:
     return text.strip()
 
 
+# ── Number-word normalization (heuristic) ──────────────────────────
+
+# Mapping of common number words to digit strings.
+# NOTE: This is intentionally limited to the most common cases.
+# It does NOT handle compound forms like "twenty-one" or "three hundred".
+_NUMBER_WORDS = {
+    "zero": "0", "one": "1", "two": "2", "three": "3", "four": "4",
+    "five": "5", "six": "6", "seven": "7", "eight": "8", "nine": "9",
+    "ten": "10", "eleven": "11", "twelve": "12", "thirteen": "13",
+    "fourteen": "14", "fifteen": "15", "sixteen": "16", "seventeen": "17",
+    "eighteen": "18", "nineteen": "19", "twenty": "20",
+    "hundred": "100", "thousand": "1000",
+}
+
+_NUMBER_WORDS_RE = re.compile(
+    r"\b(" + "|".join(_NUMBER_WORDS.keys()) + r")\b", re.IGNORECASE
+)
+
+
+def _normalize_numbers(text: str) -> str:
+    """Replace common number words with their digit equivalents.
+
+    This is a heuristic — it handles "eight" → "8" but not compound
+    forms like "twenty-one" → "21" or "three hundred" → "300".
+    Applied *after* _normalize() so input is already lowercased.
+    """
+    return _NUMBER_WORDS_RE.sub(lambda m: _NUMBER_WORDS[m.group().lower()], text)
+
+
+def _numeric_match(pred: str, ref: str, epsilon: float = 0.01) -> bool:
+    """Check if pred and ref represent the same number within tolerance.
+
+    Strips commas (e.g. "1,024" → "1024") before parsing.
+    Returns False if either string cannot be parsed as a float.
+    """
+    try:
+        pred_f = float(pred.replace(",", ""))
+        ref_f = float(ref.replace(",", ""))
+        return abs(pred_f - ref_f) < epsilon
+    except (ValueError, TypeError):
+        return False
+
+
 def _is_placeholder(ref: str) -> bool:
     """Return True if the reference answer looks like an unfilled placeholder."""
     ref_lower = ref.strip().lower()
@@ -42,11 +85,14 @@ def score_task(pred: str, task: Task) -> Optional[bool]:
     Scoring strategy (applied in order):
       1. Skip placeholders and long descriptive references (hallucination
          stress-tests whose reference is an instruction, not a short answer).
-      2. Exact match after normalization.
-      3. Substring containment: the normalized reference appears inside the
+      2. Normalize + convert number words to digits.
+      3. Exact match after normalization.
+      4. Substring containment: the normalized reference appears inside the
          *first line* of the normalized prediction. This handles models that
          give the right answer followed by an explanation.
-      4. For short numeric / symbolic answers (≤5 chars), also check whether
+      5. Numeric tolerance: if both values parse as floats, accept if
+         abs(pred - ref) < epsilon (default 0.01).
+      6. For short numeric / symbolic answers (≤5 chars), also check whether
          the reference appears as a standalone token in the first line.
     """
     ref_raw = task.reference_answer.strip()
@@ -58,19 +104,23 @@ def score_task(pred: str, task: Task) -> Optional[bool]:
     if len(ref_raw) > 80:
         return None
 
-    ref = _normalize(ref_raw)
-    pred_full = _normalize(pred)
+    ref = _normalize_numbers(_normalize(ref_raw))
+    pred_full = _normalize_numbers(_normalize(pred))
 
-    # 2. Exact match
+    # 3. Exact match
     if pred_full == ref:
         return True
 
-    # 3. Substring containment in first line
+    # 4. Substring containment in first line
     first_line = pred_full.split("\n")[0]
     if ref in first_line:
         return True
 
-    # 4. Short-answer token match in first line
+    # 5. Numeric tolerance
+    if _numeric_match(first_line, ref):
+        return True
+
+    # 6. Short-answer token match in first line
     if len(ref) <= 5:
         tokens = re.split(r"[\s`.,;:!?()\[\]{}\"']+", first_line)
         if ref in tokens:
