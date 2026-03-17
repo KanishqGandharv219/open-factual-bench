@@ -1,5 +1,7 @@
 # Open LLM Factuality & Hallucination Benchmark
 
+### 🌐 [Live Interactive Leaderboard](https://kanishqgandharv219.github.io/open-factual-bench/)
+
 ## Vision
 
 Large language model benchmarks are under increasing criticism for weak methodology, data contamination, and leaderboard scores that are easy to game.
