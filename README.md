@@ -6,7 +6,7 @@
 
 Large language model benchmarks are under increasing criticism for weak methodology, data contamination, and leaderboard scores that are easy to game.
 At the same time, new work such as DeepMind's FACTS Benchmark Suite and FACTS Grounding highlights the need for systematic, transparent evaluation of model factuality on real-world questions.
-This project aims to build a small but rigorous, open benchmark that measures the factuality and hallucination behaviour of **open LLMs** (e.g. Gemma, Llama, Mistral, Phi), with a focus on reproducibility and realistic hardware constraints.
+This project aims to build a small but rigorous, open benchmark that measures the factuality, and hallucination behaviour of **open LLMs** (e.g. Gemma, Llama, Mistral, Phi), with a focus on reproducibility and realistic hardware constraints.
 
 ## Scope
 
